@@ -14,17 +14,12 @@ class _CartScreenState extends State<CartScreen> {
   void initState() {
     super.initState();
 
-    // Mock cart items - simulate local state
     cart = [
       {
-        'title': 'Axel Arigato',
-        'price': 245.00,
-        'image': 'https://via.placeholder.com/150?text=Axel+Arigato',
-      },
-      {
-        'title': 'Bag - Gucci',
-        'price': 149.00,
-        'image': 'https://via.placeholder.com/150?text=Gucci+Bag',
+        'title': 'Leather Handbag',
+        'price': 1200,
+        'image':
+            'https://images.pexels.com/photos/3908800/pexels-photo-3908800.jpeg',
       },
     ];
   }
