@@ -24,7 +24,7 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text(
-              "Fashions",
+              "Fashions Store",
               style: TextStyle(color: Colors.white, fontSize: 32),
             ),
             SizedBox(height: 20),
