@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'dashboard.dart';
 
-class LoginSuccessScreen extends StatelessWidget {
-  const LoginSuccessScreen({super.key});
+class SuccessScreen extends StatelessWidget {
+  const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,51 +12,55 @@ class LoginSuccessScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
+          // 🔹 Background Image (same as splash)
           Image.network(
-            'https://images.pexels.com/photos/3908800/pexels-photo-3908800.jpeg',
+            'https://images.pexels.com/photos/33202766/pexels-photo-33202766.jpeg',
             fit: BoxFit.cover,
           ),
-          Container(
-            color: Colors.black.withOpacity(0.6), // Dark overlay for contrast
-          ),
+
+          // 🔹 Dark Overlay
+          Container(color: Colors.black.withOpacity(0.6)),
+
+          // 🔹 Content
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(
-                  Icons.check_circle,
-                  color: Colors.greenAccent,
-                  size: 100,
-                ),
-                const SizedBox(height: 20),
                 const Text(
-                  "Login Successful!",
+                  "You're Signed In!",
                   style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
                     color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: 4,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 30),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 16,
+                    ),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (_) => const Dashboard()),
+                      MaterialPageRoute(
+                        builder: (_) => const DashboardScreen(),
+                      ),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
-                    ),
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text("Start Shopping"),
+                  child: const Text("Continue to App"),
                 ),
               ],
             ),

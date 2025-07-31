@@ -1,49 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/cart_provider.dart';
 
-class ProductDetailScreen extends StatefulWidget {
+class ProductDetailScreen extends StatelessWidget {
   final Map<String, dynamic> product;
+
   const ProductDetailScreen({super.key, required this.product});
 
   @override
-  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
-}
-
-class _ProductDetailScreenState extends State<ProductDetailScreen> {
-  int selectedSize = 41;
-
-  @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: Text(widget.product['title'])),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Image.network(widget.product['image']),
-            const SizedBox(height: 20),
-            Text(widget.product['description']),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 10,
-              children: [39, 40, 41, 42].map((size) {
-                return ChoiceChip(
-                  label: Text(size.toString()),
-                  selected: selectedSize == size,
-                  onSelected: (_) => setState(() => selectedSize = size),
-                );
-              }).toList(),
+      appBar: AppBar(title: Text(product['name'])),
+      body: Column(
+        children: [
+          Image.network(product['image'], height: 250),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product['name'],
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "\$${product['price']}",
+                  style: const TextStyle(fontSize: 18),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    cartProvider.addToCart(product);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Added to cart")),
+                    );
+                  },
+                  child: const Text("Add to Cart"),
+                ),
+              ],
             ),
-            const Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Added to cart (local state)")),
-                );
-              },
-              child: Text("Add to cart - \$${widget.product['price']}"),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

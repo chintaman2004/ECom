@@ -20,6 +20,10 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  double get totalPrice =>
-      _cartItems.fold(0, (sum, item) => sum + (item['price'] as double));
+  double get totalPrice {
+    return _cartItems.fold(
+      0,
+      (sum, item) => sum + double.tryParse(item['price'].replaceAll(',', ''))!,
+    );
+  }
 }

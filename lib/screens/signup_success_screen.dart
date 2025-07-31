@@ -1,5 +1,5 @@
+import 'package:ecom/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'dashboard.dart';
 
 class SignupSuccessScreen extends StatelessWidget {
   const SignupSuccessScreen({super.key});
@@ -21,7 +21,7 @@ class SignupSuccessScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (_) => const Dashboard()),
+                  MaterialPageRoute(builder: (_) => LoginScreen()),
                 );
               },
               child: const Text("Start Shopping"),
