@@ -15,7 +15,7 @@ class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    HomeScreen(),
+    HomeScreen(), // Make sure this screen handles item taps
     const CartScreen(),
     const NotificationScreen(),
     const ProfileScreen(),

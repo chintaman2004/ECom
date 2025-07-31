@@ -45,9 +45,8 @@ class HomeScreen extends StatelessWidget {
     },
   ];
 
-  BuildContext? get context => null;
-
   Widget buildProductSection(
+    BuildContext context,
     String title,
     List<Map<String, dynamic>> products,
   ) {
@@ -76,7 +75,7 @@ class HomeScreen extends StatelessWidget {
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.push(
-                  context!,
+                  context,
                   MaterialPageRoute(
                     builder: (_) => ProductDetailScreen(product: product),
                   ),
@@ -95,9 +94,9 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text("Home")),
       body: ListView(
         children: [
-          buildProductSection("🆕 New Arrivals", newArrivals),
+          buildProductSection(context, "🆕 New Arrivals", newArrivals),
           const Divider(),
-          buildProductSection("✨ Regular Items", regularItems),
+          buildProductSection(context, "✨ Regular Items", regularItems),
         ],
       ),
     );
