@@ -21,9 +21,13 @@ class CartProvider with ChangeNotifier {
   }
 
   double get totalPrice {
-    return _cartItems.fold(
-      0,
-      (sum, item) => sum + double.tryParse(item['price'].replaceAll(',', ''))!,
-    );
+    return _cartItems.fold(0, (sum, item) {
+      final priceRaw = item['price'];
+      final priceString = priceRaw != null
+          ? priceRaw.toString().replaceAll(',', '')
+          : '0';
+      final price = double.tryParse(priceString) ?? 0.0;
+      return sum + price;
+    });
   }
 }

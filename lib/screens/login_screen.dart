@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:ecom/screens/login_success_screen.dart';
 import 'package:flutter/material.dart';
 
