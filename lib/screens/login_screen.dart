@@ -1,52 +1,126 @@
-import 'package:flutter/material.dart';
-import 'home_screen.dart';
-import 'cart_screen.dart';
-import 'notification_screen.dart';
-import 'profile_screen.dart';
+// ignore_for_file: use_build_context_synchronously
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'signup_screen.dart';
+import 'package:ecom/screens/dashboard.dart'; // Import actual Dashboard
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
-  int _selectedIndex = 0;
-  final List<Widget> _screens = [
-    HomeScreen(),
-    const CartScreen(),
-    const NotificationScreen(),
-    const ProfileScreen(),
-  ];
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-  void _onItemTapped(int index) {
+  bool _isLoading = false;
+  String? _errorMessage;
+
+  Future<void> _login() async {
+    if (!_formKey.currentState!.validate()) return;
+
     setState(() {
-      _selectedIndex = index;
+      _isLoading = true;
+      _errorMessage = null;
     });
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const Dashboard()),
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _errorMessage = e.message;
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: "Cart",
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const Text(
+                  "Login",
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+
+                TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(labelText: "Email"),
+                  validator: (value) =>
+                      value!.isEmpty ? 'Please enter email' : null,
+                ),
+                const SizedBox(height: 16),
+
+                TextFormField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(labelText: "Password"),
+                  validator: (value) =>
+                      value!.isEmpty ? 'Please enter password' : null,
+                ),
+                const SizedBox(height: 24),
+
+                if (_errorMessage != null)
+                  Text(
+                    _errorMessage!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+
+                const SizedBox(height: 10),
+
+                _isLoading
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: _login,
+                        child: const Text("Login"),
+                      ),
+
+                const SizedBox(height: 20),
+
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SignupScreen()),
+                    );
+                  },
+                  child: const Text("Don't have an account? Sign Up"),
+                ),
+              ],
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: "Notification",
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
+        ),
       ),
     );
   }
