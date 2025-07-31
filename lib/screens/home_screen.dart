@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
     },
     {
       'title': 'Steel Basket for Shopping',
-      'price': '5000',
+      'price': '9500',
       'image':
           'https://images.pexels.com/photos/5926217/pexels-photo-5926217.jpeg',
       'description': 'Advanced features and water resistant.',
@@ -91,14 +91,14 @@ class HomeScreen extends StatelessWidget {
     },
     {
       'title': 'Dress hangers',
-      'price': '500',
+      'price': '650',
       'image':
           'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
       'title': 'Key Chain',
-      'price': '500',
+      'price': '780',
       'image':
           'https://images.pexels.com/photos/18889463/pexels-photo-18889463.jpeg',
       'description': 'Advanced features and water resistant.',
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
     },
     {
       'title': 'Dress hangers',
-      'price': '500',
+      'price': '857',
       'image':
           'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
       'description': 'Advanced features and water resistant.',
@@ -190,7 +190,6 @@ class HomeScreen extends StatelessWidget {
           'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg',
       'description': 'Comfortable shoes for daily use.',
     },
-    // Add 23 more Regular items similarly...
   ];
 
   @override

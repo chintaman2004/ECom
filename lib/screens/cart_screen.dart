@@ -1,3 +1,4 @@
+import 'package:ecom/screens/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
@@ -20,7 +21,7 @@ class CartScreen extends StatelessWidget {
                 final item = cartProvider.cartItems[index];
                 return ListTile(
                   leading: Image.network(item['image'], width: 50, height: 50),
-                  title: Text(item['name']),
+                  title: Text(item['title']), // ✅ FIXED HERE
                   subtitle: Text("\$${item['price']}"),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
@@ -41,9 +42,9 @@ class CartScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    cartProvider.clearCart();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Checkout successful")),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const CheckoutScreen()),
                     );
                   },
                   child: const Text("Checkout"),
