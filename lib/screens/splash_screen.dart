@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:ecom/screens/signup_success_screen.dart';
+import 'package:ecom/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
@@ -110,9 +110,7 @@ class SplashScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (_) => SignupSuccessScreen(),
-                          ),
+                          MaterialPageRoute(builder: (_) => SignupScreen()),
                         );
                       },
                       child: const Text('Sign Up'),
