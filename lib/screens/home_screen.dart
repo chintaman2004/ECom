@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'product_detail_screen.dart';
-import 'profile_screen.dart'; // Make sure this exists
+import 'profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,14 +10,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   final List<Map<String, dynamic>> newArrivals = [
     {
       'title': 'Leather Jacket',
       'price': '2500',
       'image':
-          'https://images.pexels.com/photos/2787341/pexels-photo-2787341.jpeg',
+          'https://images.pexels.com/photos/1124468/pexels-photo-1124468.jpeg',
       'description': 'Stylish leather jacket for all seasons.',
     },
     {
@@ -119,66 +119,66 @@ class _HomeScreenState extends State<HomeScreen> {
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
+      'title': 'Keys Set',
       'price': '857',
       'image':
           'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Ink Bottle',
+      'price': '325',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/5994299/pexels-photo-5994299.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Reel Cassete',
+      'price': '125',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/1762411/pexels-photo-1762411.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Stylsh Headset',
+      'price': '950',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/8003585/pexels-photo-8003585.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Steel Cloth Stand',
+      'price': '655',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/7262894/pexels-photo-7262894.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Drilling Machine',
+      'price': '50000',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/4792482/pexels-photo-4792482.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Gold Ring',
+      'price': '9520',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/4943485/pexels-photo-4943485.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Bottle Cap',
+      'price': '25',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/3752036/pexels-photo-3752036.jpeg',
       'description': 'Advanced features and water resistant.',
     },
     {
-      'title': 'Dress hangers',
-      'price': '500',
+      'title': 'Suite',
+      'price': '15000',
       'image':
-          'https://images.pexels.com/photos/8306367/pexels-photo-8306367.jpeg',
+          'https://images.pexels.com/photos/6969905/pexels-photo-6969905.jpeg',
       'description': 'Advanced features and water resistant.',
     },
   ];
@@ -203,18 +203,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_currentIndex == 0 ? "Home" : "Profile")),
       body: _currentIndex == 0
           ? _buildHomeBody(context)
           : const ProfileScreen(),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
     );
   }
 

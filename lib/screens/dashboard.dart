@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'cart_screen.dart';
 import 'profile_screen.dart';
+import 'package:ecom/screens/notification_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -15,8 +16,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    const CartScreen(),
-    const ProfileScreen(),
+    CartScreen(),
+    NotificationScreen(),
+    ProfileScreen(),
   ];
 
   void _onTap(int index) {
@@ -33,10 +35,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
         currentIndex: _selectedIndex,
         onTap: _onTap,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+            backgroundColor: Color(0xFF2196F3),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: "Cart",
+            backgroundColor: Color(0xFF2196F3),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: "Notifications",
+            backgroundColor: Color(0xFF2196F3),
           ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
