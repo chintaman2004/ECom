@@ -11,7 +11,6 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
 
-    // Duplicate the product image three times for gallery
     final List<String> imageUrls = List.generate(
       3,
       (index) => product['image'],

@@ -225,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget sectionHeader(String title) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(8.0),
       child: Text(
         title,
         style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
